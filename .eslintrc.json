@@ -4,7 +4,9 @@
     "extends": [
         "plugin:@typescript-eslint/recommended",
         "plugin:prettier/recommended",
-        "prettier"
+        "prettier",
+        "airbnb-base",
+        "airbnb-typescript/base"
     ],
     "parserOptions": {
         "ecmaVersion": 2020,

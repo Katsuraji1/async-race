@@ -1,15 +1,228 @@
 *{
     margin: 0 auto; 
     padding: 0;
+    font-size: 1rem;
+    box-sizing: border-box;;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 1000;
 }
 
 body{
-    width: 100vw;
+    border: 3px;
     height: 100vh;
 
     .main_container{
         width: 100%;
         height: 100%;
-        background-color: rgb(190, 119, 119);
+        background-color: black;
+
+        header{
+            .control_container {
+                .switch_buttons{
+                    display: flex;
+                    gap: 0.3rem;
+                    max-width: 300px;
+                    margin: 0;
+                    width: 100%;
+
+                    .garage_btn{
+                        box-sizing: border-box;
+                        width: 40%;
+                        height: 30px;
+                        background-color: rgb(13, 204, 13);
+                        border-bottom: 0.4rem solid  greenyellow;
+                    }
+
+                    .winners_btn {
+                        box-sizing: border-box;
+                        width: 40%;
+                        height: 30px;
+                        background-color: rgb(13, 204, 13);
+                        border-bottom: 0.4rem solid  greenyellow;
+                    }
+                }
+            }
+            .redactor_container{
+                margin-top: 1.5rem;
+                .create_container{
+                    max-width: 400px;
+                    width: 100%;
+                    margin: 0;
+                    display: flex;
+                    gap: 2%;
+                    
+                    .create_name_input{
+                        width: 45%;
+                    }
+                    .create_color_input{
+                        width: 15%;
+                    }
+                    .create_car{
+                        width: 20%;
+                        background-color: rgb(13, 204, 13);
+                        border-bottom: 0.4rem solid  greenyellow;
+                    }
+                }
+
+                .update_container{
+                    max-width: 400px;
+                    width: 100%;
+                    margin: 0;
+                    display: flex;
+                    gap: 2%;
+
+                    .update_name_input{
+                        width: 45%;
+                    }
+                    .update_color_input{
+                        width: 15%;
+                    }
+                    .update_car{
+                        width: 20%;
+                        background-color: rgb(13, 204, 13);
+                        border-bottom: 0.4rem solid  greenyellow;
+                    }
+                }
+
+                .control_buttons{
+                    max-width: 400px;
+                    width: 100%;
+                    margin: 0;
+
+                    .race_button{
+                        width: 20%;
+                        background-color: rgb(13, 204, 13);
+                        border-bottom: 0.4rem solid  greenyellow;
+                    }
+                    .reset_button{
+                        width: 20%;
+                        background-color: rgb(13, 204, 13);
+                        border-bottom: 0.4rem solid  greenyellow;
+                    }
+
+                    .generate_button{
+                        width: 42%;
+                        background-color: rgb(33, 151, 230);
+                        border-bottom: 0.4rem solid  rgb(65, 31, 189);
+                    }
+                }
+            }
+        }
+
+        main {
+            width: 100%;
+            h1{
+                color: white;
+            }
+
+            h2 {
+                color: white;
+            }
+
+            span {
+                color: white;
+            }
+
+            .garage_container{
+                width: 100%;
+
+                .race_game {
+                    width: 100%;
+
+                    .car_control{
+                        max-width: 500px;
+                        width: 100%;
+                        margin: 0;
+
+                        .select_car{
+                            box-sizing: border-box;
+                            width: 20%;
+                            height: 30px;
+                            background-color: rgb(13, 204, 13);
+                            border-bottom: 0.4rem solid  greenyellow;
+                        }
+
+                        .remove_car {
+                            box-sizing: border-box;
+                            width: 25%;
+                            height: 30px;
+                            background-color: rgb(13, 204, 13);
+                            border-bottom: 0.4rem solid  greenyellow;
+                        }
+                    }
+
+                    .road_container{
+                        width: 100vw;
+                        border-bottom-style: dotted;
+                        color: white;
+                        display: flex;
+
+                        .engine_car {
+                            display: flex;
+                            max-width: 60px;
+                            width: 100%;
+                            height: 25px;
+                            margin: 0;
+                            gap: 10px;
+                            button{
+                                width: 25px;
+                                height: 25px;
+                                color: white;
+                            }
+
+                            .start-engine_btn{
+                                background-color: rgb(65, 65, 2);
+                                border: 1px solid yellow;
+                            }
+
+                            .stop-engine_btn{
+                                background-color: rgb(4, 9, 51);
+                                border: 1px solid rgb(0, 26, 255);
+                            }
+                        }
+
+                        .road{
+                            width: 80vw;
+                            height: 30px;
+                            margin: 0;
+
+                            .car {
+                                height: 30px;
+                                width: 60px;
+                                margin: 0;
+                                fill: white;
+                            }
+
+                            .finish{
+                                height: 30px;
+                                width: 60px;
+                                margin: 0;
+                                float: right;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        footer{
+            width: 100%;
+
+            .page_control{
+                max-width: 200px;
+                width: 100%;
+                display: flex;
+                gap: 10%;
+                margin: 0;
+
+                button{
+                    width: 40%;
+                    height: 30px;
+                    background-color: rgb(7, 205, 255);
+                    border-bottom: 0.4rem solid  rgb(0, 30, 48);
+                    box-sizing: border-box;
+                }
+            }
+        }
     }
 }

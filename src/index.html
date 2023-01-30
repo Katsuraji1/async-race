@@ -4,8 +4,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Async Race</title>
 </head>
 <body>
+    <div class="main_container">
+        <header>
+            <div class="control_container">
+                <div class="switch_buttons">
+                    <button class="garage_btn">TO GARAGE</button>
+                    <button class="winners_btn">TO WINNERS</button>
+                </div>
+                <div class="redactor_container">
+                    <div class="create_container">
+                        <input type="text" class="create_name_input">
+                        <input type="color" class="create_color_input">
+                        <button class="create_car">CREATE</button>
+                    </div>
+                    <div class="update_container">
+                        <input type="text" class="update_name_input">
+                        <input type="color" class="update_color_input">
+                        <button class="update_car">UPDATE</button>
+                    </div>
+                    <div class="control_buttons">
+                        <button class="race_button">RACE</button>
+                        <button class="reset_button">RESET</button>
+                        <button class="generate_button">GENERATE CARS</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            <h1>GARAGE(100)</h1>
+            <h2>Page #1</h2>
+            <div class="garage_container">
+                <div class="race_game">
+                    <div class="car_control">
+                        <button class="select_car">SELECT</button>
+                        <button class="remove_car">REMOVE CAR</button>
+                        <span class="car_name">TESLA</span>
+                    </div>
+                    <div class="road_container">
+                        <div class="engine_car">
+                            <button class="start-engine_btn">A</button>
+                            <button class="stop-engine_btn">B</button>
+                        </div>
+                        <div class="road">
+                            <div class="car"></div>
+                            <div class="finish"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="page_control">
+                <button class="prev_page">PREV</button>
+                <button class="next_page">NEXT</button>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>

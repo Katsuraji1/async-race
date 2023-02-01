@@ -7,13 +7,17 @@
     <title>Async Race</title>
 </head>
 <body>
-    <div class="main_container">
+<!--     <div class="main_container">
         <header>
             <div class="control_container">
                 <div class="switch_buttons">
                     <button class="garage_btn">TO GARAGE</button>
                     <button class="winners_btn">TO WINNERS</button>
                 </div>
+            </div>
+        </header>
+        <main>
+            <div class="garage_container">
                 <div class="redactor_container">
                     <div class="create_container">
                         <input type="text" class="create_name_input">
@@ -31,39 +35,55 @@
                         <button class="generate_button">GENERATE CARS</button>
                     </div>
                 </div>
-            </div>
-        </header>
-        <main>
-            <h1>GARAGE(100)</h1>
-            <h2>Page #1</h2>
-            <div class="garage_container">
-                <div class="race_game">
-                    <div class="car_control">
-                        <button class="select_car">SELECT</button>
-                        <button class="remove_car">REMOVE CAR</button>
-                        <span class="car_name">TESLA</span>
-                    </div>
-                    <div class="road_container">
-                        <div class="engine_car">
-                            <button class="start-engine_btn">A</button>
-                            <button class="stop-engine_btn">B</button>
+                <h1>GARAGE(100)</h1>
+                <h2>Page #1</h2>
+                <div class="race_container">
+                    <div class="race_game">
+                        <div class="car_control">
+                            <button class="select_car">SELECT</button>
+                            <button class="remove_car">REMOVE CAR</button>
+                            <span class="car_name">TESLA</span>
                         </div>
-                        <div class="road">
-                            <svg class="car">
-                                <use xlink:href='./svg/car.svg#1299198'></use>
-                            </svg>
-                            <img class="finish" src="./svg/Flag.svg">
+                        <div class="road_container">
+                            <div class="engine_car">
+                                <button class="start-engine_btn">A</button>
+                                <button class="stop-engine_btn">B</button>
+                            </div>
+                            <div class="road">
+                                <svg class="car">
+                                    <use xlink:href='./svg/car.svg#1299198'></use>
+                                </svg>
+                                <img class="finish" src="./svg/Flag.svg">
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="page_control">
+                    <button class="prev_page">PREV</button>
+                    <button class="next_page">NEXT</button>
+                </div>
+            </div>
+            <div class="winners_container">
+                <h1>Winners(3)</h1>
+                <h2>Page#2</h2>
+                <table class="winners_table">
+                    <tr>
+                        <th>Number</th>
+                        <th>Car</th>
+                        <th>Name</th>
+                        <th>Wins</th>
+                        <th>Best Time(seconds)</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                </table>
             </div>
         </main>
-        <footer>
-            <div class="page_control">
-                <button class="prev_page">PREV</button>
-                <button class="next_page">NEXT</button>
-            </div>
-        </footer>
-    </div>
+    </div> -->
 </body>
 </html>

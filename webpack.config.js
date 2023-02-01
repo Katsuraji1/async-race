@@ -15,7 +15,7 @@ module.exports = {
     target,
     devtool,
     devServer:{
-        port:3000,
+        port:5000,
         open:true,
         hot:true,
     },
@@ -130,7 +130,11 @@ module.exports = {
               test: /\.(ts|tsx)$/i,
               loader: "ts-loader",
               exclude: ["/node_modules/"],
-              }
+            },
+            {
+              test: /\.svg$/,
+              loader: 'svg-sprite-loader'
+            }
         ]
     },
     resolve: {

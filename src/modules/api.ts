@@ -6,17 +6,11 @@ const path = {
     garage: '/garage',
 };
 
-export async function getCars<T>(page?: number): Promise<T> {
+export async function getCars<T>(page: number): Promise<T> {
     const limit = 7;
     const data = await fetch(`${baseURL}${path.garage}?_page=${page}&_limit=${limit}`);
     const response = await data.json();
     return response;
-}
-
-export async function getId(): Promise<number> {
-    const data = await fetch(`${baseURL}${path.garage}`);
-    const response = await data.json();
-    return response[response.length - 1].id;
 }
 
 export async function createCar(car: Car | string) {
@@ -31,4 +25,12 @@ export async function createCar(car: Car | string) {
 
     const NewCar = JSON.stringify(response);
     return NewCar;
+}
+
+export async function deleteCar(id: number) {
+    const response = await fetch(`${baseURL}${path.garage}/${id}`, {
+        method: 'DELETE',
+    });
+    const data = await response.json();
+    return data;
 }

@@ -1,4 +1,4 @@
-import { Car } from './interface';
+import { ServerResponse } from './interface';
 
 const DOMElements = {
     elements: {
@@ -41,7 +41,7 @@ const RedactorContainer = () => `<div class="redactor_container">
 </div>`;
 
 const TextNav = () => `<h1>GARAGE(1)</h1>
-<h2>Page #1</h2>`;
+<h2 class='page_num' >Page #1</h2>`;
 
 const carRender = (color: string) =>
     `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="45" height="50" viewBox="0 0 256 256" xml:space="preserve">
@@ -54,9 +54,9 @@ const carRender = (color: string) =>
 </g>
 </svg>`;
 
-const RaceContainer = (response: Array<Car>) => {
+const RaceContainer = (response: Array<ServerResponse>) => {
     let resultString: string = '';
-    response.forEach((el: Car) => {
+    response.forEach((el: ServerResponse) => {
         resultString += `<div class="race_container" id=${el.id}>
         <div class="race_game">
             <div class="car_control">
@@ -113,7 +113,7 @@ const WinnersTable = () => `<table class="winners_table">
 </tr>
 </table>`;
 
-const CreateGarage = (response: Array<Car>): string => {
+const CreateGarage = (response: Array<ServerResponse>): string => {
     return `${RedactorContainer()}${TextNav()}${RaceContainer(response)}${PageControl()}`;
 };
 
@@ -136,7 +136,7 @@ const SwitchWindows = () => {
     });
 };
 
-export const BodyContainer = (response: Array<Car>) => {
+export const BodyContainer = (response: Array<ServerResponse>) => {
     DivContainer.innerHTML = '';
     DivContainer.innerHTML = `${ControlContainer()}`;
     MainContainer().innerHTML = `<div class="garage_container">${CreateGarage(response)}</div>

@@ -11,6 +11,23 @@ body{
     border: 3px;
     height: 100vh;
 
+    .blur {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        text-align: center;
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
+        opacity: 0.8;
+        color: aliceblue;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+    }
+
     .main_container{
         width: 100%;
         background-color: rgb(56, 51, 51);
@@ -188,7 +205,9 @@ body{
                                 width: 80vw;
                                 height: 40px;
                                 margin: 0;
-    
+                                .svg-car{
+                                    margin-left: 0;
+                                }
                                 .car {
                                     height: 30px;
                                     width: 60px;
@@ -203,6 +222,9 @@ body{
                             }
                         }
                     }
+                }
+                .active {
+                    background-color: rgb(209, 163, 78);
                 }
                 .page_control{
                     max-width: 200px;

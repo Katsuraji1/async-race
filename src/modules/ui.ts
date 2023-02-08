@@ -1,4 +1,6 @@
-import { ServerResponse } from './interface';
+import { getCar, getWinners, getWinnersCars } from './api';
+import { IGetWinners, ServerResponse } from './interface';
+import { containersBtn, sortBtn } from './utils';
 
 const DOMElements = {
     elements: {
@@ -40,11 +42,11 @@ const RedactorContainer = () => `<div class="redactor_container">
 </div>
 </div>`;
 
-const TextNav = () => `<h1>GARAGE(1)</h1>
+const TextNav = () => `<h1 class='total-garage-cars'>GARAGE(1)</h1>
 <h2 class='page_num' >Page #1</h2>`;
 
 const carRender = (color: string) =>
-    `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="45" height="50" viewBox="0 0 256 256" xml:space="preserve">
+    `<svg class='svg-car' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="45" height="50" viewBox="0 0 256 256" xml:space="preserve">
 <defs>
 </defs>
 <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: ${color}; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)" >
@@ -93,25 +95,66 @@ const PageControl = () => `<div class="page_control">
 </div>`;
 
 const WinnersText = () => `
-<h1>Winners(3)</h1>
-<h2>Page#2</h2>`;
+<h1 class='winners-total-count'>Winners()</h1>
+<h2 class='winners-page'>Page#1</h2>`;
 
 const WinnersTable = () => `<table class="winners_table">
 <tr>
-    <th>Number</th>
+    <th>IDr</th>
     <th>Car</th>
     <th>Name</th>
     <th>Wins</th>
     <th>Best Time(seconds)</th>
 </tr>
-<tr>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
-</tr>
+<tbody class='tbody'></tbody>
 </table>`;
+
+export const TableLine = (id: number, car: string, name: string, wins: number, time: number) => `
+<tr>
+    <td>${id}</td>
+    <td>${car}</td>
+    <td>${name}</td>
+    <td>${wins}</td>
+    <td>${time}</td>
+</tr>`;
+
+const TableButtons = () => `<select class='sort'>
+<option>id</option>
+<option>wins</option>
+<option>time</option>
+</select>
+<select class='order'>
+<option>ASC</option>
+<option>DESC</option>
+</select>`;
+
+const winnersPagintaion = () => `
+<button class='prev-winners'>PREV</button>
+<button class='next-winners'>NEXT</button>
+`;
+
+export async function switchToWinners(page: number, sort: string, order: string) {
+    const { GrarageContainer, WinnersContainer } = containersBtn();
+    GrarageContainer.style.display = 'none';
+    WinnersContainer.style.display = 'block';
+    const winnersArray: Array<IGetWinners> = await getWinners(page, sort, order);
+    const table = document.querySelector('.tbody') as HTMLTableElement;
+    table.innerHTML = '';
+    winnersArray.forEach(async (el: IGetWinners) => {
+        const promiseCar = await getCar(el.id);
+        const tr = table.appendChild(document.createElement('tr')) as HTMLElement;
+        const tdID = tr.appendChild(document.createElement('td')) as HTMLElement;
+        const tdCar = tr.appendChild(document.createElement('td')) as HTMLElement;
+        const tdName = tr.appendChild(document.createElement('td')) as HTMLElement;
+        const tdWins = tr.appendChild(document.createElement('td')) as HTMLElement;
+        const tdtime = tr.appendChild(document.createElement('td')) as HTMLElement;
+        tdID.textContent = `${el.id}`;
+        tdWins.textContent = `${el.wins}`;
+        tdtime.textContent = `${el.time}`;
+        tdName.textContent = `${promiseCar.name}`;
+        tdCar.innerHTML = `${carRender(promiseCar.color)}`;
+    });
+}
 
 const CreateGarage = (response: Array<ServerResponse>): string => {
     return `${RedactorContainer()}${TextNav()}${RaceContainer(response)}${PageControl()}`;
@@ -124,11 +167,16 @@ const CreateWinners = (): string => {
 const SwitchWindows = () => {
     const ToWinners = document.querySelector('.winners_btn') as HTMLElement;
     const ToGarage = document.querySelector('.garage_btn') as HTMLElement;
-    const GrarageContainer = document.querySelector('.garage_container') as HTMLElement;
-    const WinnersContainer = document.querySelector('.winners_container') as HTMLElement;
-    ToWinners.addEventListener('click', () => {
-        GrarageContainer.style.display = 'none';
-        WinnersContainer.style.display = 'block';
+    const { GrarageContainer, WinnersContainer } = containersBtn();
+    WinnersContainer.insertAdjacentHTML('afterbegin', TableButtons());
+    WinnersContainer.insertAdjacentHTML('beforeend', winnersPagintaion());
+    const WinenrsTotalCount = document.querySelector('.winners-total-count') as HTMLElement;
+    const { sortWinSelector, orderSelector } = sortBtn();
+    ToWinners.addEventListener('click', async () => {
+        const sortValue = sortWinSelector.value;
+        const orderValue = orderSelector.value;
+        switchToWinners(1, sortValue, orderValue);
+        WinenrsTotalCount.textContent = `Winners(${await getWinnersCars()})`;
     });
     ToGarage.addEventListener('click', () => {
         GrarageContainer.style.display = 'block';
@@ -143,3 +191,9 @@ export const BodyContainer = (response: Array<ServerResponse>) => {
     <div class='winners_container'>${CreateWinners()}</div>`;
     SwitchWindows();
 };
+
+export function getBlurWinner(TextBlur: string) {
+    const WinnerDiv = DOMElements.elements.body.appendChild(document.createElement('div') as HTMLDivElement);
+    WinnerDiv.classList.add('blur');
+    WinnerDiv.textContent = `${TextBlur}`;
+}
